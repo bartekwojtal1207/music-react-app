@@ -1,0 +1,16 @@
+.Sidebar {
+    margin: 0;
+    position: absolute;
+    left: -260px;
+    top: 0;
+    background-color: #333;
+    color: #FFffff;
+    list-style: none;
+    height: 100vh;
+    width: 220px;
+    transition: left .5s;
+}
+
+.SidebarShow {
+    left: 0;
+}

@@ -1,0 +1,11 @@
+.Sidebar__element {
+    margin-bottom: 20px;
+}
+
+.Sidebar__element:first-of-type {
+    margin-top: 50px;
+}
+
+.Sidebar__element:last-of-type {
+    margin-bottom: 0;
+}

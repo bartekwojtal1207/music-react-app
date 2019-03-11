@@ -1,0 +1,19 @@
+.Logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 15vmin;
+    pointer-events: none;
+}
+
+.LogoWrap {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

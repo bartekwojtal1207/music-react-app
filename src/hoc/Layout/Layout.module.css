@@ -1,0 +1,8 @@
+.Container {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)),url("../../../../my-app/src/assets/img/img1.png");
+}
+
+.Content {
+    padding-left: 0;
+}

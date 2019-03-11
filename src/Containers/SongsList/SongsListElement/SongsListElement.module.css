@@ -1,0 +1,16 @@
+.SongsListElement {
+    padding: 0 0 20px 0;
+    margin: 0;
+    width: 100%;
+}
+
+.SongsListElementLink {
+    font-size: 1em;
+    color: #FFF;
+    text-decoration: none;
+}
+
+.SongsListElementTitle {
+    margin: 0;
+    margin-left: 40px;
+}
