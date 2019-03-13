@@ -14,7 +14,7 @@ class Layout extends Component {
                 <Header/>
                 <Sidebar/>
                 <section className={styles.Content}>
-                    <SongsList/>
+                    {this.props.children}
                 </section>
             </div>
         );

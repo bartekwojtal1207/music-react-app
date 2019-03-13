@@ -1,0 +1,29 @@
+.FormElement {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.Label {
+    font-size: 12px;
+    color: #333333;
+}
+
+.Input {
+    height: 56px;
+    border-radius: 8px;
+    box-shadow: none;
+    outline: none;
+    border: 1px solid #54daff;
+    background-color: #0bbcee;
+    padding-left: 15px;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.Submit {
+    background-color: #2F6FAD;
+    margin-top: 20px;
+}

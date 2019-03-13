@@ -1,0 +1,18 @@
+.FormRegisterWrap {
+    padding: 30px;
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+}
+
+.FormTitle {
+    width: 100%;
+    text-align: center;
+    margin-top: 0;
+}

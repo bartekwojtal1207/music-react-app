@@ -20,7 +20,6 @@ class SongsList extends Component {
                     );
             })
         }
-
         return(
             <div onClick={this.props.displaySongList} className={Styles.SongsListContainer}>
                 <h3 className={Styles.SongsListTitle}>Twoja lista utworów</h3>

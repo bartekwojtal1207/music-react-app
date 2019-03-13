@@ -16,12 +16,9 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     if(action.type === 'GET_LIST') {
-    console.log(state.songsList)
-    //     return {
-    //         ...state,
-    //         songsList: state.songsList + ' ' + 'fajne to' + action.data.name
-    //     };
+        return state;
     }
+
     return state;
 };
 
