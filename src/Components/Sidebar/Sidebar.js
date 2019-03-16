@@ -7,7 +7,28 @@ class Sidebar extends Component {
     constructor(props) {
         super(props);
         this.state ={
-            sidebarListText: ['O nas', 'Najpopularniejsze', 'Dodaj swój utwór', 'Zaloguj się'],
+            sidebarListText: {
+                link1: {
+                    id: 1,
+                    title: 'Twoja lista',
+                    url: '/player'
+                },
+                link2: {
+                    id: 2,
+                    title: 'Dodaj swój utwór',
+                    url: ''
+                },
+                link3: {
+                    id: 3,
+                    title: 'Najpopularniejsze',
+                    url: ''
+                },
+                link4: {
+                    id: 4,
+                    title: 'Załóż konto',
+                    url: ''
+                }
+            },
             showSidebar: false
         }
     }
@@ -25,9 +46,14 @@ class Sidebar extends Component {
         });
     };
 
+    clickLink = (e) => {
+
+        console.log(e)
+    };
+
     render() {
-        let sidebarListElement = this.state.sidebarListText.map((value, index) =>
-            <SidebarElement key={index}>{ value }</SidebarElement>
+        let sidebarListElement = Object.values(this.state.sidebarListText).map((listElement, index) =>
+            <SidebarElement key={listElement.id} click={this.clickLink} url={listElement.url}>{ listElement.title }</SidebarElement>
         );
 
         return (

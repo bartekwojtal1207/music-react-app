@@ -4,21 +4,25 @@ const initialState = {
             id: 0,
             title: 'tytul',
             author: 'author',
-            url: 'www.youtube.pl'},
+            url: 'https://www.youtube.com/watch?v=ysz5S6PUM-U',
+            type: 'video/ogg'
+        },
         song2: {
-            id: 2,
+            id: 1,
             title: 'tytul 2',
             author: 'author 2',
-            url: 'www.youtube.pl'}
+            url: 'https://www.youtube.com/watch?v=IsZNTPluKN4',
+            type: 'video/ogg'
+        }
 
     }
 };
 
-const reducer = (state = initialState, action) => {
-    if(action.type === 'GET_LIST') {
-        return state;
-    }
 
+
+
+const reducer = (state = initialState, action) => {
+    if(action.type === 'GET__SONGS_LIST') { return state; }
     return state;
 };
 

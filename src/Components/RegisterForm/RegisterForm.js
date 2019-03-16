@@ -4,7 +4,7 @@ import FormElement from '../../Components/UI/FormElement/FormElement';
 
 import {connect} from "react-redux";
 
-class RegisterForm extends Component{
+class RegisterForm extends Component {
     constructor(props) {
         super(props);
 
@@ -46,14 +46,11 @@ class RegisterForm extends Component{
     }
 
     sendForm = (e) => {
-        console.log(this.props)
         let onSendForm = this.props.onSendRegisterForm;
-        let onUserAuth = this.props.onUserAuth;
         onSendForm('test');
-        onUserAuth();
-        console.log(this.props)
-
-        e.preventDefault()
+        let getAuthUser = this.props.getAuthUser;
+        getAuthUser('wwwww');
+        e.preventDefault();
     };
 
     render() {
@@ -67,8 +64,7 @@ class RegisterForm extends Component{
                     id={input.name}
                     placeholder={input.placeholder}
                     label={input.placeholder}>
-                </FormElement>
-            )
+                </FormElement>)
         });
 
         return (
@@ -78,21 +74,19 @@ class RegisterForm extends Component{
             </form>
         )
     }
-
 }
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
-        userName: state.userName,
-        userLogged: state.userAuth
+        userName: state.auth.userName,
+        userLogged: state.auth.userAuth
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onSendRegisterForm: (name) => dispatch({type: 'SEND_REGISTER_FORM', data: {name: name}}),
-        onUserAuth: () => dispatch({type: 'GET_AUTH_USER'})
+        getAuthUser: (data) => dispatch({type: 'GET_AUTH_USER', data: data })
     }
 };
 

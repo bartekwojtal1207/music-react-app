@@ -21,7 +21,7 @@ class SongsList extends Component {
             })
         }
         return(
-            <div onClick={this.props.displaySongList} className={Styles.SongsListContainer}>
+            <div className={Styles.SongsListContainer}>
                 <h3 className={Styles.SongsListTitle}>Twoja lista utworów</h3>
                 {emptyDescription}
                 <ul className={Styles.SongList}>
@@ -34,14 +34,12 @@ class SongsList extends Component {
 
 const mapStateToProps = state => {
     return {
-        songsList: state.songsList
+        songsList: state.songs.songsList
     }
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-        displaySongList: () => dispatch({type: 'GET_LIST', data: {name: 'Bartek Wojtal'}})
-    }
+
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SongsList);

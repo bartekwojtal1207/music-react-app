@@ -3,21 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {BrowserRouter} from "react-router-dom";
 // redux
 import {createStore, combineReducers} from "redux";
-import authReducer from './store/reducer/auth';
+import authReducer from './store/auth/auth';
 import reducer from './store/reducer/reducer';
 import {Provider} from "react-redux";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 const rootReducer = combineReducers({
-    order: reducer,
+    songs: reducer,
     auth: authReducer
 });
 
-
-const store = createStore(authReducer)
+const store = createStore(rootReducer);
 
 const Root = () => (
     <Router>

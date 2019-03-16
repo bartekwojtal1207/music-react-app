@@ -9,3 +9,8 @@
 .Sidebar__element:last-of-type {
     margin-bottom: 0;
 }
+
+.Sidebar__element__link {
+    color: #FFF;
+    text-decoration: none;
+}
