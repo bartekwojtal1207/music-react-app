@@ -1,4 +1,5 @@
 import { updateObject } from '../../shared/utility';
+import axios from "../../hoc/axios/axios-register";
 const redux = require('redux');
 
 const initialState = {
@@ -12,11 +13,18 @@ const getAuthUser = (state, action) => {
 };
 
 const sendRegisterForm = (state, action) => {
-    state = {
-            ...state,
-       userAuth: true,
-       userName: action.data.name
-    };
+    console.log(action.data)
+    var myJSON = JSON.stringify(action.data);
+
+    axios.post('/users.json', {
+        test: 'testssss'
+    }).then(respone => {
+        console.log(respone)
+    }).catch(erorr => {
+        console.log(erorr)
+    });
+
+    console.log("send register form");
     return state;
 };
 
