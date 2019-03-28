@@ -13,11 +13,15 @@ const getAuthUser = (state, action) => {
 };
 
 const sendRegisterForm = (state, action) => {
-    console.log(action.data)
-    var myJSON = JSON.stringify(action.data);
+console.log(action.data)
+    let formJSON = JSON.stringify(action.data);
 
+    let fakeId = Date.now();
     axios.post('/users.json', {
-        test: 'testssss'
+        id: fakeId,
+        email: action.data.email,
+        password: action.data.password,
+        passwordConfirm: action.data.passwordConfrim
     }).then(respone => {
         console.log(respone)
     }).catch(erorr => {

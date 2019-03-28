@@ -50,20 +50,27 @@ class RegisterForm extends Component {
         let passwordInput = document.querySelector('#password');
         let valid = true;
 
-        if(element.name === 'passwordConfrim') {
+        if((element.name === 'passwordConfrim')) {
             rules = 'samePassword';
         }
 
         if((rules === 'requried') && (element.value.length < 1)) {
-            return valid =  false;
-        }else if((rules === 'samePassword') && (element.value.length > 0)) {
-            if(element.value.localeCompare(passwordInput.value) === 0) {
-                return valid = true;
-            }else {
-                return valid = false;
-            }
+            this.setValidateStyle(element, false);
+            return valid = false;
+        }else if((rules === 'samePassword') && ((element.value.length < 1) || (element.value.localeCompare(passwordInput.value) !== 0)) ) {
+            this.setValidateStyle(element, false);
+            return valid = false
         }
+        this.setValidateStyle(element, valid);
         return valid;
+    }
+
+    setValidateStyle(element, success = false) {
+        if(! success) {
+            element.parentNode.classList.add('valid');
+        }else {
+            element.parentNode.classList.remove('valid');
+        }
     }
 
     sendForm = (e) => {
@@ -73,13 +80,13 @@ class RegisterForm extends Component {
         let data = {};
 
         registerFormElements.forEach((input) => {
-            if(! this.checkValidate(input)) {
-                canSendForm = false
-            }
-
             data = {
                 ...data,
                 [input.name]: input.value
+            };
+
+            if(! this.checkValidate(input)) {
+                canSendForm = false
             }
         });
 
