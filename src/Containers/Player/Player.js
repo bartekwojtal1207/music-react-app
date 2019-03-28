@@ -9,56 +9,72 @@ class Player extends Component {
         super(props);
 
         this.state = {
-            songs : []
+            songs : [],
+            songItem: {
+
+            }
         }
     }
 
     getSongsSrc = () => {
         let updatedState = [];
         updatedState = [ ...this.state.songs];
-        let song = {};
 
         Object.values(this.props.songsList).map((value,index) => {
-            song = {
+            updatedState = [
                 ...this.state.songs,
-                url: value.url,
-            };
-            updatedState.push(song)
+                value
+            ];
+            return updatedState;
         });
-
         this.setState({songs: updatedState})
     };
 
-    testYt = () => {
-        let myRequest = new Request('https://www.googleapis.com/youtube/v3/videos?id=ysz5S6PUM-U&key=AIzaSyDYp2eP0cwX-wvLKeDZRWLkniMfy5Kz_PQ&part=snippet,contentDetails,statistics,status');
+    testYt = (songId = 'IsZNTPluKN4') => {
+        let myRequest = new Request('https://www.googleapis.com/youtube/v3/videos?id=' + songId + '&key=AIzaSyDYp2eP0cwX-wvLKeDZRWLkniMfy5Kz_PQ&part=snippet,contentDetails,statistics,status');
+
+        console.log(this.state.songs)
         fetch(myRequest)
             .then(function(response) {
                 if (!response.ok) {
                     throw new Error('HTTP error, status = ' + response.status);
                 }
                 return response.json();
-            })
-            .then(function(response) {
-                console.log(response.items)
+            }).then(function(response) {
+                Object.values(response.items).map((item) => {
+                    let updatedState = {};
+                    let categoryId = item.snippet.categoryId;
+                    let songTitle = item.snippet.localized.title;
+                    let songAuthor = item.snippet.localized.author;
+                    let viewCount = item.statistics.viewCount;
+                    let defaultJpg = item.snippet.thumbnails.default.url;
+
+                    console.log(response.items)
+                })
             });
     };
 
+    componentWillUpdate(nextProps, nextState, nextContext) {
+
+
+    }
 
     componentDidMount() {
         this.getSongsSrc();
         this.testYt()
     }
 
-
     render() {
-        const url = this.state.songs;
+        console.log(this.state.songs)
+        const songs = this.state.songs;
         let reactPlayer = null;
-        let x = null;
-        let id = 1;
+        let idSong = null;
+        let id = 0;
 
-        Object.values(url).map(function (v,i) {
-            if( id === i) { x = v.url }
-            reactPlayer = <ReactPlayer url={x} />
+        Object.values(songs).map(function (song,i) {
+            if( id === i) { idSong = 'https://www.youtube.com/watch?v=' + song[id]  }
+            console.log(idSong)
+            reactPlayer = <ReactPlayer url={idSong} />
         });
 
         return(

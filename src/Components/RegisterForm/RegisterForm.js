@@ -132,7 +132,6 @@ class RegisterForm extends Component {
         return (
             <form onSubmit={this.sendForm} className={Styles.RegisterForm}>
                 {formElement}
-                {!this.props.userLogged ? 'asdasdads' : '22222222222'}
             </form>
         )
     }

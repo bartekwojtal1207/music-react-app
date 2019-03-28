@@ -1,25 +1,8 @@
 const initialState = {
     songsList : {
-        song1 : {
-            id: 0,
-            title: 'tytul',
-            author: 'author',
-            url: 'https://www.youtube.com/watch?v=ysz5S6PUM-U',
-            type: 'video/ogg'
-        },
-        song2: {
-            id: 1,
-            title: 'tytul 2',
-            author: 'author 2',
-            url: 'https://www.youtube.com/watch?v=IsZNTPluKN4',
-            type: 'video/ogg'
-        }
-
+        id: ['a12fQ1UlWPI', 'IsZNTPluKN4']
     }
 };
-
-
-
 
 const reducer = (state = initialState, action) => {
     if(action.type === 'GET__SONGS_LIST') { return state; }
