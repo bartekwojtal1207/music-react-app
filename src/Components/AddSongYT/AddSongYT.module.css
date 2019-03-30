@@ -1,0 +1,31 @@
+.Wrap {
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Form {
+    width: 33%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.ButtonYT {
+    height: 58px;
+    width: 15%;
+    border-radius: 0 8px 8px 0;
+    box-shadow: none;
+    background-color: #000;
+    border: 5px solid #e50914;
+    border-left: 0;
+    color: #FFF;
+}
+
+.ButtonYT:hover {
+    cursor: pointer;
+    background-color: #FFF;
+    color: #000;
+}

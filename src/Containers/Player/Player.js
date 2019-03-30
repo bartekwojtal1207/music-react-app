@@ -9,28 +9,29 @@ class Player extends Component {
 
         this.state = {
             songs : [],
-            songItem: {}
-
+            songItem: {},
+            indexSong: 0
         }
     }
 
-    getSongsSrc = () => {
-        // pobiera dane z reduxa
+    getSongsId = () => {
+        // pobiera songs id z reduxa
         let updatedState = [];
         updatedState = [ ...this.state.songs];
-        console.log(this.props.songsList)
-        // Object.values(this.props.songsList).map((value,index) => {
-        //     updatedState = [
-        //         ...this.state.songs,
-        //         value
-        //     ];
-        //     return updatedState;
-        // });
-        // this.setState({songs: updatedState})
+
+        this.props.songsList.id.map((value, index) => {
+            console.log(value)
+            updatedState.push(value);
+            return updatedState;
+        });
+
+        console.log(updatedState)
+        this.setState({songs: updatedState})
+
     };
 
-    testYt = (songId = 'IsZNTPluKN4') => {
-        let myRequest = new Request('https://www.googleapis.com/youtube/v3/videos?id=' + songId + '&key=AIzaSyDYp2eP0cwX-wvLKeDZRWLkniMfy5Kz_PQ&part=snippet,contentDetails,statistics,status');
+    testYt = (id = 'IsZNTPluKN4') => {
+        let myRequest = new Request('https://www.googleapis.com/youtube/v3/videos?id=' + id + '&key=AIzaSyDYp2eP0cwX-wvLKeDZRWLkniMfy5Kz_PQ&part=snippet,contentDetails,statistics,status');
 
         fetch(myRequest)
             .then(function(response) {
@@ -46,8 +47,7 @@ class Player extends Component {
                     let songAuthor = item.snippet.localized.author;
                     let viewCount = item.statistics.viewCount;
                     let defaultJpg = item.snippet.thumbnails.default.url;
-
-                    console.log(response.items)
+                    console.log(item)
                 })
             });
     };
@@ -55,7 +55,7 @@ class Player extends Component {
     componentWillUpdate(nextProps, nextState, nextContext) {}
 
     componentDidMount() {
-        this.getSongsSrc();
+        this.getSongsId();
         this.testYt()
     }
 
@@ -63,15 +63,14 @@ class Player extends Component {
         const songs = this.state.songs;
         let reactPlayer = null;
         let url = null;
-        let id = 0;
-        console.log(this.state.songs)
+        let id = this.state.indexSong;
 
-        Object.values(songs).map(function (song,i) {
-            if( id === i) { url = 'https://www.youtube.com/watch?v=' + song[id]  }
+        songs.map(function (song,i) {
+            if( id === i) { url = 'https://www.youtube.com/watch?v=' + song }
             reactPlayer = <ReactPlayer url={url} />
         });
 
-        return(
+        return (
             <div className={Styles.PlayerContainer}>
                 {reactPlayer}
             </div>

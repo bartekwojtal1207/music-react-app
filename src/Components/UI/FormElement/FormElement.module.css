@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     justify-content: left;
+    width: 100%;
 }
 
 .Label {
@@ -17,6 +18,19 @@
     outline: none;
     border: 1px solid #54daff;
     background-color: #0bbcee;
+    padding-left: 15px;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.InputYT {
+    height: 46px;
+    border-radius: 8px 0 0 8px;
+    box-shadow: none;
+    outline: none;
+    border: 5px solid #e50914;
+    background-color: #000;
     padding-left: 15px;
     color: #FFF;
     font-size: 14px;

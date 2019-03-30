@@ -16,7 +16,7 @@ class Sidebar extends Component {
                 link2: {
                     id: 2,
                     title: 'Dodaj swój utwór',
-                    url: ''
+                    url: '/add-songs'
                 },
                 link3: {
                     id: 3,
