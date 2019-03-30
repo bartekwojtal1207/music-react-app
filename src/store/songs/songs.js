@@ -14,7 +14,9 @@ const getSongsId = (state, action) => {
 };
 
 const addSongsId = (state, action) => {
-
+    console.log(state)
+    console.log(action)
+    return state.songsList.id
 };
 
 const reducer = (state = initialState, action) => {

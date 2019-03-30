@@ -6,7 +6,7 @@ const addSongYT = (props) => {
 
     return(
         <div className={Styles.Wrap}>
-            <form className={Styles.Form}>
+            <form className={Styles.Form} onSubmit={props.addSong}>
                 <FormElement
                     name={'idSongYt'}
                     id={'songYt'}
