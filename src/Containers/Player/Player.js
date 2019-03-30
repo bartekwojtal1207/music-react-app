@@ -3,37 +3,35 @@ import {connect} from "react-redux";
 import ReactPlayer from 'react-player'
 import Styles from './Player.module.css';
 
-
 class Player extends Component {
     constructor(props){
         super(props);
 
         this.state = {
             songs : [],
-            songItem: {
+            songItem: {}
 
-            }
         }
     }
 
     getSongsSrc = () => {
+        // pobiera dane z reduxa
         let updatedState = [];
         updatedState = [ ...this.state.songs];
-
-        Object.values(this.props.songsList).map((value,index) => {
-            updatedState = [
-                ...this.state.songs,
-                value
-            ];
-            return updatedState;
-        });
-        this.setState({songs: updatedState})
+        console.log(this.props.songsList)
+        // Object.values(this.props.songsList).map((value,index) => {
+        //     updatedState = [
+        //         ...this.state.songs,
+        //         value
+        //     ];
+        //     return updatedState;
+        // });
+        // this.setState({songs: updatedState})
     };
 
     testYt = (songId = 'IsZNTPluKN4') => {
         let myRequest = new Request('https://www.googleapis.com/youtube/v3/videos?id=' + songId + '&key=AIzaSyDYp2eP0cwX-wvLKeDZRWLkniMfy5Kz_PQ&part=snippet,contentDetails,statistics,status');
 
-        console.log(this.state.songs)
         fetch(myRequest)
             .then(function(response) {
                 if (!response.ok) {
@@ -54,10 +52,7 @@ class Player extends Component {
             });
     };
 
-    componentWillUpdate(nextProps, nextState, nextContext) {
-
-
-    }
+    componentWillUpdate(nextProps, nextState, nextContext) {}
 
     componentDidMount() {
         this.getSongsSrc();
@@ -65,16 +60,15 @@ class Player extends Component {
     }
 
     render() {
-        console.log(this.state.songs)
         const songs = this.state.songs;
         let reactPlayer = null;
-        let idSong = null;
+        let url = null;
         let id = 0;
+        console.log(this.state.songs)
 
         Object.values(songs).map(function (song,i) {
-            if( id === i) { idSong = 'https://www.youtube.com/watch?v=' + song[id]  }
-            console.log(idSong)
-            reactPlayer = <ReactPlayer url={idSong} />
+            if( id === i) { url = 'https://www.youtube.com/watch?v=' + song[id]  }
+            reactPlayer = <ReactPlayer url={url} />
         });
 
         return(

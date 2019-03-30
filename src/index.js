@@ -6,12 +6,12 @@ import * as serviceWorker from './serviceWorker';
 // redux
 import {createStore, combineReducers} from "redux";
 import authReducer from './store/auth/auth';
-import reducer from './store/reducer/reducer';
 import {Provider} from "react-redux";
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import songsReducer from './store/songs/songs';
 
 const rootReducer = combineReducers({
-    songs: reducer,
+    songs: songsReducer,
     auth: authReducer
 });
 
