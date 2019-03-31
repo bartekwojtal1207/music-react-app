@@ -13,7 +13,6 @@ const getAuthUser = (state, action) => {
 };
 
 const sendRegisterForm = (state, action) => {
-console.log(action.data)
     let formJSON = JSON.stringify(action.data);
 
     let fakeId = Date.now();

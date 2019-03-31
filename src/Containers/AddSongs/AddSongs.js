@@ -7,10 +7,22 @@ import Styles from './AddSongs.module.css';
 class AddSongs extends Component{
 
     addSong = (e) => {
-        console.log(e.target)
+        let addSongYTForm = e.target;
+        let idYTinput = addSongYTForm.querySelector('#songYt').value;
+        let sendForm = false;
+
+        if(idYTinput.length > 1) {
+            sendForm = true;
+        }
+        //zKOzQdmXotI
+        if(sendForm) {
+            let addSongsId = this.props.addSongsId;
+            addSongsId(idYTinput);
+            alert('Twoje Id zostało dodane');
+            addSongYTForm.querySelector('#songYt').value = '';
+        }
+
         e.preventDefault();
-        let addSongsId = this.props.addSongsId;
-        addSongsId('id')
     };
 
     render() {
@@ -33,7 +45,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getSongsId: (data) => dispatch({type: 'GET_SONGS_ID'}),
-        addSongsId: (data) => dispatch({type: 'ADD_SONGS_ID'}),
+        addSongsId: (idYT) => dispatch({type: 'ADD_SONGS_ID', idYT: idYT, typeSong: 'YT'}),
     }
 };
 

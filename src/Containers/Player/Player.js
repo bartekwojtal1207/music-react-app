@@ -8,7 +8,7 @@ class Player extends Component {
         super(props);
 
         this.state = {
-            songs : [],
+            songsId : [],
             songItem: {},
             indexSong: 0
         }
@@ -17,20 +17,16 @@ class Player extends Component {
     getSongsId = () => {
         // pobiera songs id z reduxa
         let updatedState = [];
-        updatedState = [ ...this.state.songs];
+        updatedState = [ ...this.state.songsId];
 
         this.props.songsList.id.map((value, index) => {
-            console.log(value)
             updatedState.push(value);
             return updatedState;
         });
-
-        console.log(updatedState)
-        this.setState({songs: updatedState})
-
+        this.setState({songsId: updatedState})
     };
 
-    testYt = (id = 'IsZNTPluKN4') => {
+    testYt = (id = 'a12fQ1UlWPI') => {
         let myRequest = new Request('https://www.googleapis.com/youtube/v3/videos?id=' + id + '&key=AIzaSyDYp2eP0cwX-wvLKeDZRWLkniMfy5Kz_PQ&part=snippet,contentDetails,statistics,status');
 
         fetch(myRequest)
@@ -52,7 +48,29 @@ class Player extends Component {
             });
     };
 
-    componentWillUpdate(nextProps, nextState, nextContext) {}
+    prevSong = () => {
+        let index = this.state.indexSong;
+        let elementsLength = this.state.songsId.length;
+
+        if(index !== 0) {
+            index = index - 1;
+        }else {
+            index = this.state.songsId.length - 1;
+        }
+        this.setState({indexSong: index})
+    };
+
+    nextSong = () => {
+        let index = this.state.indexSong;
+        let elementsLength = this.state.songsId.length;
+
+        if(index < (elementsLength - 1)) {
+            index = index + 1;
+        }else {
+            index = 0;
+        }
+        this.setState({indexSong: index})
+    };
 
     componentDidMount() {
         this.getSongsId();
@@ -60,10 +78,11 @@ class Player extends Component {
     }
 
     render() {
-        const songs = this.state.songs;
+        const songs = this.state.songsId;
         let reactPlayer = null;
         let url = null;
         let id = this.state.indexSong;
+
 
         songs.map(function (song,i) {
             if( id === i) { url = 'https://www.youtube.com/watch?v=' + song }
@@ -73,6 +92,10 @@ class Player extends Component {
         return (
             <div className={Styles.PlayerContainer}>
                 {reactPlayer}
+                <div className={Styles.PlayerPanelContainer}>
+                    <button className={Styles.Button} onClick={this.prevSong}>Poprzedni utwór</button>
+                    <button className={Styles.Button} onClick={this.nextSong}>Następny utwór</button>
+                </div>
             </div>
         )
     }
