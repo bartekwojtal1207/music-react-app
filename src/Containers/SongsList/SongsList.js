@@ -11,6 +11,7 @@ class SongsList extends Component {
     }
 
     render() {
+
         // let songsList = Object.values(this.props.songsList) || null;
         //
         // let countSongs = songsList.length || 0;
@@ -30,6 +31,7 @@ class SongsList extends Component {
             <div className={Styles.SongsListContainer}>
                 <h3 className={Styles.SongsListTitle}>Twoja lista utworów</h3>
                 {/*{emptyDescription}*/}
+                <button type="button" onClick={this.props.test}>Click</button>
                 <ul className={Styles.SongList}>
                     {/*{songsListElement}*/}
                 </ul>
@@ -46,7 +48,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getSongsId: (data) => dispatch({type: 'GET_SONGS_ID'}),
+            getSongsId: (data) => dispatch({type: 'GET_SONGS_ID'}),
+            test: (data) => dispatch({type: 'TEST'}),
     }
 };
 

@@ -1,6 +1,6 @@
 import axios from "../../hoc/axios/axios-register";
 const redux = require('redux');
-const fs = require('fs');
+
 
 const initialState = {
     songsList : {
@@ -13,22 +13,45 @@ const initialState = {
 function saveSongToFile(array = initialState.songsList.id) {
     let idSongs = Object.assign({}, array);
     let jsonSongs = JSON.stringify(idSongs);
-
-    fs.writeFile('mynewfile2.txt', 'w', function (err, file) {
-        if (err) throw err;
-        console.log('Saved!');
-    });
-
-    console.log(fs);
-    console.log(jsonSongs);
 }
+
+const test = () =>
+{
+   // alert('Hello world!');
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("get", "/service");
+
+    fetch('/service', {method: 'GET'})
+        .then(function(response) {
+            if(response.ok) {
+                console.log(response)
+                return response;
+            }
+            throw new Error('Request failed.');
+        })
+        .then(function(data) {
+           console.log(data)
+            alert('wykonano akcje')
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
+    return true;
+}
+
 saveSongToFile();
 
-const getSongsId = (state, action) => {
-    return state.songsList.id;
+const getSongsId = (state = initialState, action) => {
+    let array = [
+        ...state.songsList.id
+    ];
+    console.log(array);
+    return array;
 };
 
-const addSongsId = (state, action) => {
+const addSongsId = (state = initialState.songsList.id, action) => {
     let idYT = action.idYT;
     let idArray = state.songsList.id;
     idArray.push(idYT);
@@ -39,6 +62,7 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'GET_SONGS_ID': return getSongsId(state, action);
         case 'ADD_SONGS_ID': return addSongsId(state, action);
+        case 'TEST': return test(state, action);
         default:
             return state
     }
