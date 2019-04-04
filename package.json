@@ -25,7 +25,7 @@
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-react": "7.12.4",
-    "express": "^4.16.4",
+    "express": "^4.15.2",
     "file-loader": "2.0.0",
     "file-system": "^2.2.2",
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
@@ -56,6 +56,8 @@
     "redux": "^4.0.1",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "style-loader": "0.23.1",
     "terser-webpack-plugin": "1.2.2",
     "url-loader": "1.1.2",
@@ -68,7 +70,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "saveSongs": "node scripts/saveSongs.js"
+    "saveSongs": "node public/saveSongs.js"
   },
   "eslintConfig": {
     "extends": "react-app"

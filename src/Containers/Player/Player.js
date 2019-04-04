@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import ReactPlayer from 'react-player'
 import Styles from './Player.module.css';
 
+import { subscribeToTimer } from '../../API/api'
+
 class Player extends Component {
     constructor(props){
         super(props);
@@ -10,8 +12,13 @@ class Player extends Component {
         this.state = {
             songsId : [],
             songItem: {},
-            indexSong: 0
+            indexSong: 0,
+            timestamp: 'nulllllll'
         }
+
+        subscribeToTimer((err, timestamp) => this.setState({
+            timestamp
+        }));
     }
 
     getSongsId = () => {

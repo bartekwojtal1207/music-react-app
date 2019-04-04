@@ -6,8 +6,8 @@ import Styles from './SongsList.module.css';
 
 class SongsList extends Component {
     componentDidMount() {
-        let getSongsId = this.props.getSongsId;
-        getSongsId()
+      //  let getSongsId = this.props.getSongsId;
+      //  getSongsId()
     }
 
     render() {
@@ -48,7 +48,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-            getSongsId: (data) => dispatch({type: 'GET_SONGS_ID'}),
+           // getSongsId: (data) => dispatch({type: 'GET_SONGS_ID'}),
             test: (data) => dispatch({type: 'TEST'}),
     }
 };

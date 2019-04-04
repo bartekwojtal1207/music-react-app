@@ -1,13 +1,16 @@
 import axios from "../../hoc/axios/axios-register";
-const redux = require('redux');
+import openSocket from 'socket.io-client';
 
+
+const redux = require('redux');
 
 const initialState = {
     songsList : {
         id: [ 'a12fQ1UlWPI',
             'IsZNTPluKN4'
         ]
-    }
+    },
+    timestamp: ' chuj wie'
 };
 
 function saveSongToFile(array = initialState.songsList.id) {
@@ -17,35 +20,43 @@ function saveSongToFile(array = initialState.songsList.id) {
 
 const test = () =>
 {
-   // alert('Hello world!');
+    console.log('adasdads')
 
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("get", "/service");
+   //  subscripeToTimer((err, timestamp) => this.setState({
+   //      timestamp
+   //  }));
+   // // alert('Hello world!');
 
-    fetch('/service', {method: 'GET'})
-        .then(function(response) {
-            if(response.ok) {
-                console.log(response)
-                return response;
-            }
-            throw new Error('Request failed.');
-        })
-        .then(function(data) {
-           console.log(data)
-            alert('wykonano akcje')
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
+    // var xmlhttp = new XMLHttpRequest();
+    // xmlhttp.open("get", "/service");
+    //
+    // fetch('/service', {method: 'GET'})
+    //     .then(function(response) {
+    //         if(response.ok) {
+    //             console.log(response)
+    //             return response;
+    //         }
+    //         throw new Error('Request failed.');
+    //     })
+    //     .then(function(data) {
+    //        console.log(data)
+    //         alert('wykonano akcje')
+    //     })
+    //     .catch(function(error) {
+    //         console.log(error);
+    //     });
+
+
+
 
     return true;
-}
+};
 
 saveSongToFile();
 
 const getSongsId = (state = initialState, action) => {
     let array = [
-        ...state.songsList.id
+            ...state.songsList.id
     ];
     console.log(array);
     return array;
