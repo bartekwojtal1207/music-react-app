@@ -1,6 +1,6 @@
 import axios from "../../hoc/axios/axios-register";
 import openSocket from 'socket.io-client';
-
+import {AddSong} from "../../API/AddSong";
 
 const redux = require('redux');
 
@@ -10,55 +10,30 @@ const initialState = {
             'IsZNTPluKN4'
         ]
     },
-    timestamp: ' chuj wie'
+    timestamp: "timestamp"
 };
 
-function saveSongToFile(array = initialState.songsList.id) {
+function converArraySongs(array = initialState.songsList.id) {
     let idSongs = Object.assign({}, array);
     let jsonSongs = JSON.stringify(idSongs);
+    console.log(idSongs)
+    console.log(jsonSongs)
 }
+//saveSongToFile();
 
-const test = () =>
-{
-    console.log('adasdads')
-
-   //  subscripeToTimer((err, timestamp) => this.setState({
-   //      timestamp
-   //  }));
-   // // alert('Hello world!');
-
-    // var xmlhttp = new XMLHttpRequest();
-    // xmlhttp.open("get", "/service");
-    //
-    // fetch('/service', {method: 'GET'})
-    //     .then(function(response) {
-    //         if(response.ok) {
-    //             console.log(response)
-    //             return response;
-    //         }
-    //         throw new Error('Request failed.');
-    //     })
-    //     .then(function(data) {
-    //        console.log(data)
-    //         alert('wykonano akcje')
-    //     })
-    //     .catch(function(error) {
-    //         console.log(error);
-    //     });
-
-
-
-
+const test = () => {
+    console.log('x`');
+    AddSong(1999, () => {
+        console.log('test')
+    })
+    converArraySongs();
     return true;
 };
-
-saveSongToFile();
 
 const getSongsId = (state = initialState, action) => {
     let array = [
             ...state.songsList.id
     ];
-    console.log(array);
     return array;
 };
 

@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
-    if(action.type ===  'GET_SONG_LIST') {
+    if(action.type ===  'GET_SONG_LIST') {//@TODO do przeniesienia
         return {
             ...state,
             songsList: state.songsList + ' ' + 'fajne to'

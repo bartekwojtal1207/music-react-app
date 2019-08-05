@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {connect} from "react-redux";
 import ReactPlayer from 'react-player'
 import Styles from './Player.module.css';
-
-import { subscribeToTimer } from '../../API/api'
+import { AddSong } from '../../API/AddSong'
 
 class Player extends Component {
     constructor(props){
@@ -16,9 +15,9 @@ class Player extends Component {
             timestamp: 'nulllllll'
         }
 
-        subscribeToTimer((err, timestamp) => this.setState({
-            timestamp
-        }));
+        AddSong(1999, () => {
+            console.log('test')
+        })
     }
 
     getSongsId = () => {
@@ -34,25 +33,25 @@ class Player extends Component {
     };
 
     testYt = (id = 'a12fQ1UlWPI') => {
-        let myRequest = new Request('https://www.googleapis.com/youtube/v3/videos?id=' + id + '&key=AIzaSyDYp2eP0cwX-wvLKeDZRWLkniMfy5Kz_PQ&part=snippet,contentDetails,statistics,status');
-
-        fetch(myRequest)
-            .then(function(response) {
-                if (!response.ok) {
-                    throw new Error('HTTP error, status = ' + response.status);
-                }
-                return response.json();
-            }).then(function(response) {
-                Object.values(response.items).map((item) => {
-                    let updatedState = {};
-                    let categoryId = item.snippet.categoryId;
-                    let songTitle = item.snippet.localized.title;
-                    let songAuthor = item.snippet.localized.author;
-                    let viewCount = item.statistics.viewCount;
-                    let defaultJpg = item.snippet.thumbnails.default.url;
-                    console.log(item)
-                })
-            });
+       // // let myRequest = new Request('https://www.googleapis.com/youtube/v3/videos?id=' + id + '&key=AIzaSyDYp2eP0cwX-wvLKeDZRWLkniMfy5Kz_PQ&part=snippet,contentDetails,statistics,status');
+       //
+       //  fetch(myRequest)
+       //      .then(function(response) {
+       //          if (!response.ok) {
+       //              throw new Error('HTTP error, status = ' + response.status);
+       //          }
+       //          return response.json();
+       //      }).then(function(response) {
+       //          Object.values(response.items).map((item) => {
+       //              let updatedState = {};
+       //              let categoryId = item.snippet.categoryId;
+       //              let songTitle = item.snippet.localized.title;
+       //              let songAuthor = item.snippet.localized.author;
+       //              let viewCount = item.statistics.viewCount;
+       //              let defaultJpg = item.snippet.thumbnails.default.url;
+       //              console.log(item)
+       //          })
+       //      });
     };
 
     prevSong = () => {

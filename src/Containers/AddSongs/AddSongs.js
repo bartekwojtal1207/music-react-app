@@ -4,7 +4,7 @@ import AddSongYT from '../../Components/AddSongYT/AddSongYT'
 //css
 import Styles from './AddSongs.module.css';
 
-class AddSongs extends Component{
+class AddSongs extends Component {
 
     addSong = (e) => {
         let addSongYTForm = e.target;
