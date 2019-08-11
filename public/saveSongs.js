@@ -15,7 +15,6 @@ var srv = nsHttp.createServer(function(req, res)
             break;
 
         case "/":
-            console.log("chuj");
             HTTP_SendHtmlFile(res, nsPath.join(__dirname, "test.html"));
             break;
 

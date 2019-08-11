@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {connect} from "react-redux";
 import ReactPlayer from 'react-player'
 import Styles from './Player.module.css';
-import { AddSong } from '../../API/AddSong'
+import { putSongsTOFile } from '../../API/AddSong'
+import * as actions from "../../store/action/songs.action";
 
 class Player extends Component {
     constructor(props){
@@ -13,22 +14,19 @@ class Player extends Component {
             songItem: {},
             indexSong: 0,
             timestamp: 'nulllllll'
-        }
-
-        AddSong(1999, () => {
-            console.log('test')
-        })
+        };
     }
 
     getSongsId = () => {
         // pobiera songs id z reduxa
         let updatedState = [];
         updatedState = [ ...this.state.songsId];
+        this.props.getSongs();
 
-        this.props.songsList.id.map((value, index) => {
-            updatedState.push(value);
-            return updatedState;
-        });
+        // this.props.songsList.id.map((value, index) => {
+        //     updatedState.push(value);
+        //     return updatedState;
+        // });
         this.setState({songsId: updatedState})
     };
 
@@ -116,7 +114,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        getSongs: () => dispatch( actions.getSongs() )
     }
 };
 

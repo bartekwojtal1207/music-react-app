@@ -12,8 +12,8 @@ process.on('unhandledRejection', err => {
     throw err;
 });
 
-function AddSong(interval, cb) {
-    io.emit('saveSongsToFile')
+function putSongsTOFile(interval, cb) {
+    io.emit('putSongsTOFile')
 }
 
-export { AddSong }
+export { putSongsTOFile }

@@ -1,5 +1,5 @@
-import { updateObject } from '../../shared/utility';
-import axios from "../../hoc/axios/axios-register";
+import { updateObject } from '../../../shared/utility';
+import axios from "../../../hoc/axios/axios-register";
 const redux = require('redux');
 
 const initialState = {
