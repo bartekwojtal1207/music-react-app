@@ -3,35 +3,34 @@ import updateObject from "../../../shared/utility";
 const redux = require('redux');
 
 const initialState = {
-    songsList : [],
-    timestamp: "timestamp"
+    songsList : []
 };
 
-// function convertArraySongs(array = initialState.songsList.id) {
-//     let idSongs = Object.assign({}, array);
-//     let jsonSongs = JSON.stringify(idSongs);
-//     console.log(idSongs)
-//     console.log(jsonSongs)
-// }
-
-const getSongsId = (state, action) => {
-    console.log(action)
-    return updateObject( state, {
-
-    });
-};
-
-const addSongsId = (state, action) => {
-    let idSong = action.idYT;
-    let idArray = state.songsList.id;
-    idArray.push(idSong);
+const getSongs = (state, action) => {
     return state;
+};
+
+const getSongsSuccess = (state, action) => {
+    return state;
+};
+
+const addSongs = (state, action) => {
+    return state;
+};
+
+const addSongsSuccess = (state, action) => {
+    console.log(action.data)
+    console.log(state)
+    console.log('AAA')
+    return updateObject( state, {songsList: [...state.songsList, action.data]} );
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionType.GET_SONGS_ID: return getSongsId(state, action);
-        case actionType.ADD_SONGS_ID: return addSongsId(state, action);
+        case actionType.GET_SONGS_ID: return getSongs(state, action);
+        case actionType.GET_SONGS_ID_SUCCESS: return getSongsSuccess(state, action);
+        case actionType.ADD_SONGS_ID: return addSongs(state, action);
+        case actionType.ADD_SONGS_ID_SUCCESS: return addSongsSuccess(state, action);
         default:
             return state
     }

@@ -18,7 +18,7 @@ var srv = nsHttp.createServer(function(req, res)
             HTTP_SendHtmlFile(res, nsPath.join(__dirname, "test.html"));
             break;
 
-        case "/service":
+            case "/service":
             let data = {
                 name: 'tes'
             }
@@ -64,3 +64,4 @@ function HTTP_SendNotFound(res)
 
 srv.listen(8000);
 console.log(srv)
+console.log('test')

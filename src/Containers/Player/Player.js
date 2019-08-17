@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {connect} from "react-redux";
 import ReactPlayer from 'react-player'
 import Styles from './Player.module.css';
-import { putSongsTOFile } from '../../API/AddSong'
 import * as actions from "../../store/action/songs.action";
 
 class Player extends Component {
@@ -22,11 +21,6 @@ class Player extends Component {
         let updatedState = [];
         updatedState = [ ...this.state.songsId];
         this.props.getSongs();
-
-        // this.props.songsList.id.map((value, index) => {
-        //     updatedState.push(value);
-        //     return updatedState;
-        // });
         this.setState({songsId: updatedState})
     };
 
@@ -78,7 +72,6 @@ class Player extends Component {
 
     componentDidMount() {
         this.getSongsId();
-        this.testYt()
     }
 
     render() {

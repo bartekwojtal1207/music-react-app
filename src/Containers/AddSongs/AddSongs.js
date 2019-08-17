@@ -1,29 +1,31 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import AddSongYT from '../../Components/AddSongYT/AddSongYT'
+import * as actionType from "../../store/action/action"
+import * as actions from "../../store/action/songs.action";
 //css
 import Styles from './AddSongs.module.css';
+import {getSongs} from "../../store/action/songs.action";
 
 class AddSongs extends Component {
-
     addSong = (e) => {
-        let addSongYTForm = e.target;
-        let idYTinput = addSongYTForm.querySelector('#songYt').value;
-        let sendForm = false;
-
-        if(idYTinput.length > 1) {
-            sendForm = true;
-        }
-        //zKOzQdmXotI
-        if(sendForm) {
-            let addSongsId = this.props.addSongsId;
-            addSongsId(idYTinput);
-            alert('Twoje Id zostało dodane');
-            addSongYTForm.querySelector('#songYt').value = '';
-        }
-
         e.preventDefault();
+        let addSongYTForm = e.target;
+        let songId = addSongYTForm.querySelector('#songYt').value;
+        let sendForm = false;
+        songId.length < 1 ? sendForm = false : sendForm = true;
+
+        if (sendForm) {
+            let addSongsId = this.props.addSongs;
+            addSongsId(songId);
+            addSongYTForm.querySelector('#songYt').value = '';
+            alert('Twoje Id zostało dodane');
+        }
     };
+
+    componentDidMount() {
+        this.props.getSongs();
+    }
 
     render() {
         return (
@@ -37,6 +39,7 @@ class AddSongs extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log(state.songs)
     return {
         songsList: state.songs.songsList
     }
@@ -44,8 +47,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getSongsId: (data) => dispatch({type: 'GET_SONGS_ID'}),
-        addSongsId: (idYT) => dispatch({type: 'ADD_SONGS_ID', idYT: idYT, typeSong: 'YT'}),
+        getSongs: (data) => dispatch(actions.getSongs(data)),
+        addSongs: (data) => dispatch(actions.addSongs(data)),
     }
 };
 

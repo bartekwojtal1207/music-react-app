@@ -12,8 +12,8 @@ process.on('unhandledRejection', err => {
     throw err;
 });
 
-function putSongsTOFile(interval, cb) {
-    io.emit('putSongsTOFile')
+function putSongsTOFile(data) {
+    io.emit('putSongsTOFile',  { data: data })
 }
 
 export { putSongsTOFile }
