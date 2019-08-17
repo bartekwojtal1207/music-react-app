@@ -19,9 +19,6 @@ const addSongs = (state, action) => {
 };
 
 const addSongsSuccess = (state, action) => {
-    console.log(action.data)
-    console.log(state)
-    console.log('AAA')
     return updateObject( state, {songsList: [...state.songsList, action.data]} );
 };
 

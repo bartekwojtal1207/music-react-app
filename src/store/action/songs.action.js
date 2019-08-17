@@ -56,7 +56,6 @@ export const addSongs = (data) => {
 };
 
 export const addSongsSuccess = (data) => {
-    console.log('dwa' + data)
     return {
         data: data,
         type: actionType.ADD_SONGS_ID_SUCCESS
