@@ -46,12 +46,20 @@ export const addSongsStart = () => {
 
 export const addSongs = (data) => {
     return dispatch => {
-        dispatch(addSongsSuccess(data));
-        console.log(data)
 
-        // putSongsTOFile(data, (e) => {
-        //
-        // })
+//        putSongsTOFile(data)
+        dispatch(addSongsSuccess(data));
+
+        axios.post( "http://localhost:8080/service")
+            .then( res => {
+                console.log(res.data);
+                console.log('add songs action');
+
+                // dispatch(getSongsSuccess(res.data));
+            }).catch( err => {
+            console.log(err)
+            dispatch(getSongsFail(err));
+        } );
     }
 };
 

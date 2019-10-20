@@ -2,6 +2,28 @@ var nsHttp = require("http");
 var nsUrl = require("url");
 var nsPath = require("path");
 var nsFs = require("fs");
+const express = require('express');
+const bodyParser = require('body-parser')
+const path = require('path');
+const app = express();
+//
+// app.use(express.static(path.join(__dirname, 'build')));
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+
+//
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post('/service', function (req, res) {
+
+    nsFs.appendFileSync("../src" + 'myList' + ".json", "chw222dp", function (e) {
+        console.log('Saved!');
+    });
+
+
+    res.send('asdasdasda');
+});
 
 var srv = nsHttp.createServer(function(req, res)
 {
@@ -15,14 +37,15 @@ var srv = nsHttp.createServer(function(req, res)
             break;
 
         case "/":
-            HTTP_SendHtmlFile(res, nsPath.join(__dirname, "test.html"));
+            console.log("asdsada")
+            HTTP_SendHtmlFile(res, "./index.html");
             break;
-
-            case "/service":
-            let data = {
-                name: 'tes'
-            }
-            HTTP_SendOK(res, data);
+        case "/service":
+            nsFs.appendFileSync("./" + 'myList' + ".json", "chwd111p", function (e) {
+                console.log('Saved!');
+            });
+            console.log(res)
+            //HTTP_SendHtmlFile(res, "./index.html");
             break;
 
         default:
@@ -62,6 +85,6 @@ function HTTP_SendNotFound(res)
     res.end();
 }
 
-srv.listen(8000);
-console.log(srv)
+app.listen(8080);
+// console.log(srv)
 console.log('test')

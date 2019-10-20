@@ -14,12 +14,12 @@ class AddSongs extends Component {
         let songId = addSongYTForm.querySelector('#songYt').value;
         let sendForm = false;
         songId.length < 1 ? sendForm = false : sendForm = true;
-
+        //
         if (sendForm) {
             let addSongsId = this.props.addSongs;
             addSongsId(songId);
-            addSongYTForm.querySelector('#songYt').value = '';
-            alert('Twoje Id zostało dodane');
+        //     addSongYTForm.querySelector('#songYt').value = '';
+        //     alert('Twoje Id zostało dodane');
         }
     };
 
@@ -39,7 +39,6 @@ class AddSongs extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state.songs)
     return {
         songsList: state.songs.songsList
     }
