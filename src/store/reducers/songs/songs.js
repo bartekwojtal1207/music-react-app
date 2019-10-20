@@ -7,20 +7,24 @@ const initialState = {
 };
 
 const getSongs = (state, action) => {
+    console.log('GET SONGS  - REDUCER');
     return state;
 };
 
 const getSongsSuccess = (state, action) => {
+    console.log('getSongsSuccess - REDUCER');
     return state;
 };
 
 const addSongs = (state, action) => {
+    console.log('addSongs - REDUCER');
+    console.log(action.data);
     return state;
 };
 
 const addSongsSuccess = (state, action) => {
-    console.log(state)
-    console.log(action)
+    console.log('addSongsSuccess - REDUCER');
+    console.log(action.data);
     return updateObject( state, {songsList: [...state.songsList, action.data]} );
 };
 

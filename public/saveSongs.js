@@ -1,6 +1,3 @@
-var nsHttp = require("http");
-var nsUrl = require("url");
-var nsPath = require("path");
 var nsFs = require("fs");
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -10,25 +7,33 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/lista', function (req, res) { // pobiera zapisane jsona
+app.get('/list', function (req, res) { // pobiera zapisane jsona
 
-    nsFs.readFile('../myList.json', 'utf8', (err, jsonString) => {
-        HTTP_SendOK(res, jsonString)
-    })
+    try {
+        nsFs.readFile('../myList.json', 'utf8', (err, jsonString) => {
+            HTTP_SendOK(res, jsonString)
+        })
+    } catch (err) {
+        HTTP_SendInternalServerError(err);
+    }
 });
 
 
-app.post('/service', function (req, res) { // zapisuje dane do obiektu
+app.post('/add-song', function (req, res) { // zapisuje dane do obiektu
+    try {
+        nsFs.readFile('../myList.json', 'utf8', (err, jsonString) => {
+            const obj = JSON.parse(jsonString);
+            const extendedJSON = Object.assign(obj, req.body);
+            const myJSON = JSON.stringify(extendedJSON);
 
-    nsFs.readFile('../myList.json', 'utf8', (err, jsonString) => {
-        const obj = JSON.parse(jsonString);
-        const extendedJSON = Object.assign(obj, req.body);
-        const myJSON = JSON.stringify(extendedJSON);
+            nsFs.writeFileSync("../myList.json",  myJSON, function (e) {
 
-        nsFs.writeFileSync("../myList.json",  myJSON, function (e) {
-            HTTP_SendOK(res, 'zapinsao');
+            });
+            HTTP_SendOK(res, 'saved !');
         });
-    });
+    } catch (err) {
+        HTTP_SendInternalServerError(err)
+    }
 });
 
 

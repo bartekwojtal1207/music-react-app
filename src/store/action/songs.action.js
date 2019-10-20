@@ -11,14 +11,12 @@ export const getSongs = (state, data) => {
     return dispatch => {
         dispatch(getSongsStart());
 
-        axios.get( "http://localhost:8080/lista" )
+        axios.get( "http://localhost:8080/list" )
             .then( res => {
-                console.log( res.data);
                 dispatch(getSongsSuccess(res.data));
             }).catch( err => {
-                console.log(err)
                 dispatch(getSongsFail(err));
-            } );
+            });
     }
 };
 
@@ -44,27 +42,26 @@ export const addSongsStart = () => {
 
 export const addSongs = (data) => {
     return dispatch => {
-
         dispatch(addSongsStart());
 
         let map = new Map();
-        const objData = {};
+        const songData = {};
 
-        map.set(data, {
-            name: null
-        });
+        map.set(
+            data, {
+            name: null }
+        );
 
         for (let [key, value] of map) {
-            objData[key] = value;
+            songData[key] = value;
         }
 
-        axios.post( "http://localhost:8080/service", objData)
+        axios.post( "http://localhost:8080/add-song", songData)
             .then( res => {
                 dispatch(addSongsSuccess(data));
             }).catch( err => {
-            console.log(err);
             dispatch(addSongsFail(err));
-        } );
+        });
     }
 };
 

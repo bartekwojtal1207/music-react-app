@@ -1,20 +1,19 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import AddSongYT from '../../Components/AddSongYT/AddSongYT'
-import * as actionType from "../../store/action/action"
 import * as actions from "../../store/action/songs.action";
 //css
 import Styles from './AddSongs.module.css';
-import {getSongs} from "../../store/action/songs.action";
 
 class AddSongs extends Component {
+
     addSong = (e) => {
         e.preventDefault();
         let addSongYTForm = e.target;
         let songId = addSongYTForm.querySelector('#songYt').value;
         let sendForm = false;
         songId.length < 1 ? sendForm = false : sendForm = true;
-        //
+
         if (sendForm) {
             let addSongsId = this.props.addSongs;
             addSongsId(songId);
