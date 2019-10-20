@@ -18,8 +18,8 @@ class AddSongs extends Component {
         if (sendForm) {
             let addSongsId = this.props.addSongs;
             addSongsId(songId);
-        //     addSongYTForm.querySelector('#songYt').value = '';
-        //     alert('Twoje Id zostało dodane');
+            addSongYTForm.querySelector('#songYt').value = '';
+            alert('Twoje Id zostało dodane');
         }
     };
 

@@ -11,10 +11,9 @@ export const getSongs = (state, data) => {
     return dispatch => {
         dispatch(getSongsStart());
 
-        axios.get( "./myList.json" )
+        axios.get( "http://localhost:8080/lista" )
             .then( res => {
-                console.log(res.data);
-                console.log('get songs action');
+                console.log( res.data);
                 dispatch(getSongsSuccess(res.data));
             }).catch( err => {
                 console.log(err)
@@ -45,8 +44,21 @@ export const addSongsStart = () => {
 
 export const addSongs = (data) => {
     return dispatch => {
+
         dispatch(addSongsStart());
-        axios.post( "http://localhost:8080/service")
+
+        let map = new Map();
+        const objData = {};
+
+        map.set(data, {
+            name: null
+        });
+
+        for (let [key, value] of map) {
+            objData[key] = value;
+        }
+
+        axios.post( "http://localhost:8080/service", objData)
             .then( res => {
                 dispatch(addSongsSuccess(data));
             }).catch( err => {

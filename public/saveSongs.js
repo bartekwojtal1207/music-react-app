@@ -6,23 +6,31 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
-//
-// app.use(express.static(path.join(__dirname, 'build')));
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
 
-//
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-app.post('/service', function (req, res) {
+app.get('/lista', function (req, res) { // pobiera zapisane jsona
 
-    nsFs.appendFileSync("../src" + 'myList' + ".json", "chw222dp", function (e) {
-        console.log('Saved!');
-    });
-
-    HTTP_SendOK(res, 'success, your songs are saved !');
+    nsFs.readFile('../myList.json', 'utf8', (err, jsonString) => {
+        HTTP_SendOK(res, jsonString)
+    })
 });
+
+
+app.post('/service', function (req, res) { // zapisuje dane do obiektu
+
+    nsFs.readFile('../myList.json', 'utf8', (err, jsonString) => {
+        const obj = JSON.parse(jsonString);
+        const extendedJSON = Object.assign(obj, req.body);
+        const myJSON = JSON.stringify(extendedJSON);
+
+        nsFs.writeFileSync("../myList.json",  myJSON, function (e) {
+            HTTP_SendOK(res, 'zapinsao');
+        });
+    });
+});
+
 
 function HTTP_SendOK(res, body)
 {
