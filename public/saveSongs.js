@@ -3,7 +3,7 @@ var nsUrl = require("url");
 var nsPath = require("path");
 var nsFs = require("fs");
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 //
@@ -21,51 +21,8 @@ app.post('/service', function (req, res) {
         console.log('Saved!');
     });
 
-
-    res.send('asdasdasda');
+    HTTP_SendOK(res, 'success, your songs are saved !');
 });
-
-var srv = nsHttp.createServer(function(req, res)
-{
-    var pathname = nsUrl.parse(req.url).pathname;
-
-    // check URL to send the right response
-    switch(pathname)
-    {
-        case "/favicon.ico":
-            res.end();
-            break;
-
-        case "/":
-            console.log("asdsada")
-            HTTP_SendHtmlFile(res, "./index.html");
-            break;
-        case "/service":
-            nsFs.appendFileSync("./" + 'myList' + ".json", "chwd111p", function (e) {
-                console.log('Saved!');
-            });
-            console.log(res)
-            //HTTP_SendHtmlFile(res, "./index.html");
-            break;
-
-        default:
-            HTTP_SendNotFound(res);
-    }
-});
-
-// reads a file contents and sends, but if any error occur,
-// sends a 500 HTTP Status Code (Internal Server Error)
-function HTTP_SendHtmlFile(res, filepath)
-{
-    nsFs.readFile(filepath, function(err, data) {
-        if (err) {
-            HTTP_SendInternalServerError(res);
-            return;
-        }
-
-        HTTP_SendOK(res, data);
-    });
-}
 
 function HTTP_SendOK(res, body)
 {
@@ -86,5 +43,5 @@ function HTTP_SendNotFound(res)
 }
 
 app.listen(8080);
-// console.log(srv)
-console.log('test')
+
+console.log('running save songs on 8080 poort');

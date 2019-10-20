@@ -1,5 +1,4 @@
 import * as actionType from "./action";
-import { putSongsTOFile } from '../../API/AddSong'
 import axios from 'axios';
 
 export const getSongsStart = () => {
@@ -46,19 +45,13 @@ export const addSongsStart = () => {
 
 export const addSongs = (data) => {
     return dispatch => {
-
-//        putSongsTOFile(data)
-        dispatch(addSongsSuccess(data));
-
+        dispatch(addSongsStart());
         axios.post( "http://localhost:8080/service")
             .then( res => {
-                console.log(res.data);
-                console.log('add songs action');
-
-                // dispatch(getSongsSuccess(res.data));
+                dispatch(addSongsSuccess(data));
             }).catch( err => {
-            console.log(err)
-            dispatch(getSongsFail(err));
+            console.log(err);
+            dispatch(addSongsFail(err));
         } );
     }
 };
